@@ -1,0 +1,1 @@
+https://api.au-syd.assistant.watson.cloud.ibm.com/instances/f7a8faa5-65b0-4afa-ac8b-ff2b5edeb2bb/v2/assistants/137b7a1e-56de-4a56-bf7c-998e271e6724/
