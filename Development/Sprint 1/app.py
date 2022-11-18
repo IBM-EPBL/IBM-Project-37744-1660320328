@@ -74,9 +74,4 @@ def login():
     # except:
     #     print("Unable to connect to the database")
 
-    return render_template('index.html')
-
-
-@app.route('/home')
-def home():
-    return render_template('home.html')
+    return render_template('frontend/login.html')
