@@ -1,0 +1,286 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700");
+body {
+  background-color: #e5e5e5;
+  font-family: "Quicksand", sans-serif;
+}
+/* Navbar section */
+.navbar-custom {
+  background-color: #4b1b43;
+}
+
+.navbar-brand img {
+  /* float: left; */
+  width: 100px;
+  height: 35px;
+  /* padding-left: 0.5rem; */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fff;
+  margin: 0px 5px;
+  font-size: 1rem;
+}
+
+.nav-link:hover {
+  color: #4b1b43 !important;
+  background-color: #e5e5e5;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.active-nav {
+  color: #4b1b43 !important;
+  background-color: #e5e5e5;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.main-container {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  /* overflow: hidden; */
+}
+.main-container .left-sidebar {
+  flex-grow: 2;
+  max-width: 320px;
+  border-right: 1px solid #1a233d;
+  position: relative;
+  transition: all 0.5s;
+  box-shadow: 2px 0px 5px #03050a;
+  background-color: #4b1b43;
+  color: #e5e5e5;
+}
+.main-container .left-sidebar .inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.main-container .left-sidebar .inner .user-profile {
+  flex-grow: 2;
+  max-height: 345px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s;
+  border: #1a233d;
+  position: relative;
+  overflow: hidden;
+}
+/* .main-container .left-sidebar .inner .user-profile .user-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: blur(25px);
+  z-index: -1;
+} */
+.main-container .left-sidebar .inner .user-profile .user-background::after {
+  display: block;
+  position: relative;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(23, 32, 61, 0.3) 0,
+    #0a1022 95%
+  );
+  height: 100%;
+  width: 100%;
+  content: "";
+}
+.main-container .left-sidebar .inner .user-profile .user-image {
+  margin: 50px 0 25px 0;
+  border-color: #1a233d;
+  transition: all 0.5s;
+}
+.main-container .left-sidebar .inner .user-profile .user-image img {
+  width: 90px;
+  border-radius: 50%;
+  border: 6px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.5s;
+}
+.main-container .left-sidebar .inner .user-profile .user-info {
+  text-align: center;
+}
+.main-container .left-sidebar .inner .user-profile .user-info .user-name {
+  font-family: "Oswald";
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.main-container .left-sidebar .inner .user-profile .user-info .user-location {
+  color: #d1d3da;
+}
+.main-container
+  .left-sidebar
+  .inner
+  .user-profile
+  .user-info
+  .user-location
+  i::before {
+  transform: rotate(180deg);
+  color: #556798;
+}
+.main-container .left-sidebar .inner .main-menu {
+  flex-grow: 5;
+}
+.main-container .left-sidebar .inner .social-links {
+  flex-grow: 1;
+  max-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.main-container .left-sidebar .inner .social-links a {
+  padding: 0 10px;
+  color: #fff;
+  font-size: 1.3rem;
+}
+.main-container .left-sidebar.minimize {
+  max-width: 100px;
+}
+.main-container .left-sidebar.minimize .inner .user-profile {
+  border-bottom: 1px solid #1a233d;
+  max-height: 130px;
+}
+.main-container .left-sidebar.minimize .inner .user-profile .user-image {
+  margin: 25px 0;
+}
+.main-container .left-sidebar.minimize .inner .user-profile .user-image img {
+  width: 75px;
+}
+.main-container .left-sidebar.minimize .inner .user-profile .user-info {
+  height: 0px;
+  transition-delay: 0s;
+  animation: animate-sidebar-text 0.5s;
+}
+.main-container .left-sidebar.minimize .inner .social-links {
+  max-height: 200px;
+  flex-direction: column;
+}
+.main-container .left-sidebar.minimize .inner .social-links a {
+  padding: 10px 0;
+}
+.main-container .left-sidebar.minimize .toggle-button i::before {
+  transform: rotate(180deg);
+}
+
+.toggle-button {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  border: 1px solid #1a233d;
+  width: 25px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  border-radius: 0 50% 50% 0;
+  cursor: pointer;
+  transform: translate(0, -50%);
+  box-shadow: 2px 0px 5px #03050a;
+  background: #4b1b43;
+  z-index: 1;
+}
+.toggle-button:hover {
+  background: #1a233d;
+}
+.toggle-button i::before {
+  transition: all 0.25s;
+}
+
+@keyframes animate-sidebar-text {
+  100% {
+    opacity: 0;
+    margin-top: -5px;
+  }
+}
+
+.card-header {
+  font-weight: bolder;
+  font-size: 1.5rem;
+  background: linear-gradient(to left, #0a0a0a, #4b1b43);
+  color: #e5e5e5;
+}
+.sk-cube-grid {
+  width: 40px;
+  height: 40px;
+  margin: 0px 5px;
+}
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  background-color: #4b1b43;
+  float: left;
+  -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+}
+.sk-cube-grid .sk-cube1 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.sk-cube-grid .sk-cube2 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+.sk-cube-grid .sk-cube3 {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+.sk-cube-grid .sk-cube4 {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+.sk-cube-grid .sk-cube5 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.sk-cube-grid .sk-cube6 {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+.sk-cube-grid .sk-cube7 {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+.sk-cube-grid .sk-cube8 {
+  -webkit-animation-delay: 0.1s;
+  animation-delay: 0.1s;
+}
+.sk-cube-grid .sk-cube9 {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+@-webkit-keyframes sk-cubeGridScaleDelay {
+  0%,
+  70%,
+  100% {
+    -webkit-transform: scale3D(1, 1, 1);
+    transform: scale3D(1, 1, 1);
+  }
+  35% {
+    -webkit-transform: scale3D(0, 0, 1);
+    transform: scale3D(0, 0, 1);
+  }
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%,
+  70%,
+  100% {
+    -webkit-transform: scale3D(1, 1, 1);
+    transform: scale3D(1, 1, 1);
+  }
+  35% {
+    -webkit-transform: scale3D(0, 0, 1);
+    transform: scale3D(0, 0, 1);
+  }
+}
+.btn-custom {
+  background-color: #4b1b43;
+  color: #e5e5e5;
+}
+.btn-custom:hover {
+  color: #d1d3da;
+  background-color: #03050a;
+}
