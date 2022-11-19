@@ -194,3 +194,24 @@ def plasma():
 
     except Exception as e:
         print(e)
+
+@app.route('/user', methods=['POST'])
+def user():
+    try:
+        email = request.form.get("email")
+        if email and request.method == 'POST':
+            # insert record in database
+            query = "SELECT email,name,user_type FROM YPD18144.user_details WHERE verified=0;"
+            stmt = ibm_db.exec_immediate(conn,query) 
+            chk = ibm_db.fetch_assoc(stmt)
+            data=list()
+            while chk!=False:
+                data.append(chk)
+                chk = ibm_db.fetch_assoc(stmt)
+            res = jsonify(data)
+            return res
+        else:
+            return forbidden()
+
+    except Exception as e:
+        print(e)

@@ -38,7 +38,7 @@ $("#login-button").click(function (event) {
             $(".wrapper").addClass("form-success");
             setTimeout(() => {
               window.location.pathname =
-                "/Development/Sprint%202/frontend/index.html";
+                "/Development/Sprint%203/frontend/index.html";
             }, 5000);
           } else {
             document.getElementById("verify").classList.remove("d-none");
