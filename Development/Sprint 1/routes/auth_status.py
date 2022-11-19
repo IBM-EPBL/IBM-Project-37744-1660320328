@@ -1,4 +1,3 @@
-import pymysql
 from db_config import mysql
 from flask import jsonify, request
 from app import app, forbidden

@@ -27,7 +27,7 @@ $("#login-button").click(function (event) {
           document.getElementById("login-button").innerHTML = "LOGIN";
           document.getElementById("login-button").disabled = false;
         } else {
-          localStorage.setItem("username", username);
+          localStorage.setItem("email", username);
           localStorage.setItem("auth_token", response);
           $("#form-login").fadeOut(500);
           $(".wrapper").addClass("form-success");
@@ -48,10 +48,10 @@ $("#signup-button").click(function (event) {
     ' <div class="spinner-dot"><div class="dot1"></div><div class="dot2"></div></div>';
   document.getElementById("signup-button").disabled = true;
   if ($("#form-signup")[0].checkValidity()) {
-    var username = document.getElementById("user-sign").value;
     var name = document.getElementById("user-name").value;
     var email = document.getElementById("user-email").value;
     var ph_no = document.getElementById("user-phone").value;
+    var type = document.getElementById("user-type").value;
     var pass = document.getElementById("pass-sign").value;
     var re_pass = document.getElementById("re-pass").value;
     if (pass === re_pass && pass.length >= 8) {
@@ -60,7 +60,7 @@ $("#signup-button").click(function (event) {
         url: "/signup",
         datatype: "html",
         data: {
-          username: username,
+          type: type,
           name: name,
           email: email,
           ph_no: ph_no,
@@ -93,36 +93,6 @@ $("#signup-button").click(function (event) {
     document.getElementById("signup-button").innerHTML = "SIGNUP";
     document.getElementById("signup-button").disabled = false;
   }
-});
-$("#user-sign").change(function (event) {
-  document.getElementById("loader-user").classList.remove("d-none");
-  $.ajax({
-    type: "POST",
-    url: "/username_check",
-    datatype: "html",
-    data: {
-      username: document.getElementById("user-sign").value,
-    },
-    success: function (response) {
-      if (response == "success") {
-        document.getElementById("loader-user").classList.add("d-none");
-        document.getElementById("user-unav").classList.add("d-none");
-        document.getElementById("user-ava").classList.remove("d-none");
-        document.getElementById("signup-button").disabled = false;
-      } else if (response == "failed") {
-        document.getElementById("loader-user").classList.add("d-none");
-        document.getElementById("user-ava").classList.add("d-none");
-        document.getElementById("user-unav").classList.remove("d-none");
-        document.getElementById("signup-button").disabled = true;
-      } else {
-        document.getElementById("loader-user").classList.add("d-none");
-        document.getElementById("sign-unav").classList.add("d-none");
-        document.getElementById("signup-button").disabled = true;
-      }
-    },
-
-    error: function (error) {},
-  });
 });
 
 $("#signup-link").click(function (event) {
