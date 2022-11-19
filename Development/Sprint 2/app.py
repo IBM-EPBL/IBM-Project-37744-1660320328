@@ -137,7 +137,6 @@ def addplasma():
         hospital = request.form.get("hospital")
         plasma = request.form.get("plasma")
         maps = request.form.get("gmaps")
-        print(name,email,mob_no,hospital,plasma,maps)
         if name and email and mob_no and hospital and plasma and maps and request.method == 'POST':
             # insert record in database
             query = f"INSERT INTO YPD18144.request_details (email,name,contact_no,plasma_required,hospital,gmaps_link,status) VALUES ('{email}','{name}',{mob_no},'{plasma}','{hospital}','{maps}',0);"
@@ -154,3 +153,44 @@ def addplasma():
     except Exception as e:
         print(e)
 
+@app.route('/userplasma', methods=['POST'])
+def userplasma():
+    try:
+        email = request.form.get("email")
+        if email and request.method == 'POST':
+            # insert record in database
+            query = f"SELECT email,name,contact_no,plasma_required,hospital,gmaps_link,status FROM YPD18144.request_details  WHERE email= '{email}';"
+            stmt = ibm_db.exec_immediate(conn,query) 
+            chk = ibm_db.fetch_assoc(stmt)
+            data=list()
+            while chk!=False:
+                data.append(chk)
+                chk = ibm_db.fetch_assoc(stmt)
+            res = jsonify(data)
+            return res
+        else:
+            return forbidden()
+
+    except Exception as e:
+        print(e)
+
+@app.route('/plasma', methods=['POST'])
+def plasma():
+    try:
+        email = request.form.get("email")
+        if email and request.method == 'POST':
+            # insert record in database
+            query = "SELECT email,name,contact_no,plasma_required,hospital,gmaps_link,status FROM YPD18144.request_details;"
+            stmt = ibm_db.exec_immediate(conn,query) 
+            chk = ibm_db.fetch_assoc(stmt)
+            data=list()
+            while chk!=False:
+                data.append(chk)
+                chk = ibm_db.fetch_assoc(stmt)
+            res = jsonify(data)
+            return res
+        else:
+            return forbidden()
+
+    except Exception as e:
+        print(e)
