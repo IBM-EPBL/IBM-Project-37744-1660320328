@@ -30,6 +30,10 @@ $("#login-button").click(function (event) {
           if (response["VERIFIED"] == 1) {
             localStorage.setItem("email", email);
             localStorage.setItem("auth_token", response["AUTH_TOKEN"]);
+            localStorage.setItem("user_type", response["USER_TYPE"]);
+            localStorage.setItem("plasma", response["BLOOD_TYPE"]);
+            localStorage.setItem("name", response["NAME"]);
+
             $("#form-login").fadeOut(500);
             $(".wrapper").addClass("form-success");
             setTimeout(() => {

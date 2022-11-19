@@ -71,7 +71,7 @@ def login():
             stmt=ibm_db.exec_immediate(conn,usr_query)
             chk = ibm_db.fetch_assoc(stmt)
             if chk['1'] == 1:
-                pass_query = f"SELECT email, password , blood_type, name,verified FROM YPD18144.user_details WHERE email = '{email}'"
+                pass_query = f"SELECT email, password , blood_type, name,verified,user_type FROM YPD18144.user_details WHERE email = '{email}'"
                 stmt=ibm_db.exec_immediate(conn,pass_query)
                 pass_chk = ibm_db.fetch_assoc(stmt)
                 
@@ -100,7 +100,6 @@ def login():
 @app.route('/signup', methods=['POST'])
 def signup():
     try:
-        print("text")
         name = request.form.get("name")
         paswd = request.form.get("pass")
         h = sha256()
@@ -129,29 +128,29 @@ def signup():
     except Exception as e:
         print(e)
 
-
-@app.route('/auth_status', methods=['POST'])
-def auth_status():
+@app.route('/addplasma', methods=['POST'])
+def addplasma():
     try:
-        username = request.form.get("username")
-        auth_token = request.form.get("auth_token")
-        if username and auth_token and request.method == 'POST':
+        name = request.form.get("name")
+        email = request.form.get("email")
+        mob_no = request.form.get("ph_no")
+        hospital = request.form.get("hospital")
+        plasma = request.form.get("plasma")
+        maps = request.form.get("gmaps")
+        print(name,email,mob_no,hospital,plasma,maps)
+        if name and email and mob_no and hospital and plasma and maps and request.method == 'POST':
             # insert record in database
-            auth_query = f"SELECT `username`,`auth_token`,`email`,`name`,`mobile_no` from `STRTjSSGl1`.`ohs_user_details` WHERE username = '{username}' OR email = '{username}' OR mobile_no = '{username}'"
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            cursor.execute(auth_query)
-            rows = cursor.fetchall()
-            cursor.close()
-            conn.close()
-            if rows[0][1] == auth_token:
-                res = jsonify(rows)
+            query = f"INSERT INTO YPD18144.request_details (email,name,contact_no,plasma_required,hospital,gmaps_link,status) VALUES ('{email}','{name}',{mob_no},'{plasma}','{hospital}','{maps}',0);"
+            print(query)
+            if (ibm_db.exec_immediate(conn,query)):
+                res = jsonify("success")
                 return res
             else:
-                res = jsonify("false")
+                res = jsonify("failed")
                 return res
         else:
             return forbidden()
 
     except Exception as e:
         print(e)
+
