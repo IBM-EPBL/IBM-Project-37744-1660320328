@@ -2,21 +2,21 @@ $("#login-button").click(function (event) {
   event.preventDefault();
   $("#in-user").addClass("d-none");
   $("#in-pass").addClass("d-none");
+  $("#verify").addClass("d-none");
   document.getElementById("login-button").innerHTML =
     ' <div class="spinner-dot"><div class="dot1"></div><div class="dot2"></div></div>';
   document.getElementById("login-button").disabled = true;
-  var username = document.getElementById("user-log").value;
+  var email = document.getElementById("user-log").value;
   var pass = document.getElementById("pass-log").value;
   $.ajax({
     type: "POST",
-    url: "/login",
+    url: "http://127.0.0.1:5000/login",
     datatype: "html",
     data: {
-      username: username,
+      email: email,
       pass: pass,
     },
     success: function (response) {
-      // console.log(response);
       if (response == "false") {
         document.getElementById("in-user").classList.remove("d-none");
         document.getElementById("login-button").innerHTML = "LOGIN";
@@ -27,13 +27,24 @@ $("#login-button").click(function (event) {
           document.getElementById("login-button").innerHTML = "LOGIN";
           document.getElementById("login-button").disabled = false;
         } else {
-          localStorage.setItem("username", username);
-          localStorage.setItem("auth_token", response);
-          $("#form-login").fadeOut(500);
-          $(".wrapper").addClass("form-success");
-          setTimeout(() => {
-            window.location.pathname = "/home.html";
-          }, 5000);
+          if (response["VERIFIED"] == 1) {
+            localStorage.setItem("email", email);
+            localStorage.setItem("auth_token", response["AUTH_TOKEN"]);
+            localStorage.setItem("user_type", response["USER_TYPE"]);
+            localStorage.setItem("plasma", response["BLOOD_TYPE"]);
+            localStorage.setItem("name", response["NAME"]);
+
+            $("#form-login").fadeOut(500);
+            $(".wrapper").addClass("form-success");
+            setTimeout(() => {
+              window.location.pathname =
+                "/Development/Sprint%202/frontend/index.html";
+            }, 5000);
+          } else {
+            document.getElementById("verify").classList.remove("d-none");
+            document.getElementById("login-button").innerHTML = "LOGIN";
+            document.getElementById("login-button").disabled = false;
+          }
         }
       }
     },
@@ -48,33 +59,35 @@ $("#signup-button").click(function (event) {
     ' <div class="spinner-dot"><div class="dot1"></div><div class="dot2"></div></div>';
   document.getElementById("signup-button").disabled = true;
   if ($("#form-signup")[0].checkValidity()) {
-    var username = document.getElementById("user-sign").value;
     var name = document.getElementById("user-name").value;
+    console.log(name);
     var email = document.getElementById("user-email").value;
     var ph_no = document.getElementById("user-phone").value;
+    var type = document.getElementById("user-type").value;
     var pass = document.getElementById("pass-sign").value;
     var re_pass = document.getElementById("re-pass").value;
+    var plasma = document.getElementById("plasma-type").value;
+
     if (pass === re_pass && pass.length >= 8) {
       $.ajax({
         type: "POST",
-        url: "/signup",
+        url: "http://127.0.0.1:5000/signup",
         datatype: "html",
         data: {
-          username: username,
+          type: type,
           name: name,
           email: email,
           ph_no: ph_no,
           pass: pass,
+          plasma: plasma,
         },
         success: function (response) {
           if (response != "failed") {
-            localStorage.setItem("username", username);
+            localStorage.setItem("email", email);
             localStorage.setItem("auth_token", response);
             $("#form-signup").fadeOut(500);
             $(".wrapper").addClass("form-success");
-            setTimeout(() => {
-              window.location.pathname = "/home.html";
-            }, 5000);
+            alert("Kindly wait for the admin to verify your account");
           } else {
             document.getElementById("sign-unav").classList.remove("d-none");
             document.getElementById("signup-button").innerHTML = "SIGNUP";
@@ -93,36 +106,6 @@ $("#signup-button").click(function (event) {
     document.getElementById("signup-button").innerHTML = "SIGNUP";
     document.getElementById("signup-button").disabled = false;
   }
-});
-$("#user-sign").change(function (event) {
-  document.getElementById("loader-user").classList.remove("d-none");
-  $.ajax({
-    type: "POST",
-    url: "/username_check",
-    datatype: "html",
-    data: {
-      username: document.getElementById("user-sign").value,
-    },
-    success: function (response) {
-      if (response == "success") {
-        document.getElementById("loader-user").classList.add("d-none");
-        document.getElementById("user-unav").classList.add("d-none");
-        document.getElementById("user-ava").classList.remove("d-none");
-        document.getElementById("signup-button").disabled = false;
-      } else if (response == "failed") {
-        document.getElementById("loader-user").classList.add("d-none");
-        document.getElementById("user-ava").classList.add("d-none");
-        document.getElementById("user-unav").classList.remove("d-none");
-        document.getElementById("signup-button").disabled = true;
-      } else {
-        document.getElementById("loader-user").classList.add("d-none");
-        document.getElementById("sign-unav").classList.add("d-none");
-        document.getElementById("signup-button").disabled = true;
-      }
-    },
-
-    error: function (error) {},
-  });
 });
 
 $("#signup-link").click(function (event) {

@@ -1,6 +1,3 @@
-// leanModal v1.1 by Ray Stone - http://finelysliced.com.au
-// Dual licensed under the MIT and GPL
-
 (function ($) {
   $.fn.extend({
     leanModal: function (options) {
