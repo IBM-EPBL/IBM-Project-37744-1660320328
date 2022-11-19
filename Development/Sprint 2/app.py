@@ -52,17 +52,6 @@ def forbidden(error=None):
     return res
 
 
-# Add your API endpoints here
-
-
-# @app.route('/')
-# def get_endpoint_function():
-#     try:
-#         res = "<h1 style='position: fixed; top: 50%;  left: 50%; transform: translate(-50%, -50%);'>FLASK API HOME</h1>"
-#         return res
-
-#     except Exception as e:
-#         print(e)
 if __name__ == "__main__":
     app.run(debug=True)
 
@@ -92,7 +81,6 @@ def login():
                     auth.update(b'{rand}')
                     auth_token = h.hexdigest()
                     updt_query = f"UPDATE YPD18144.user_details SET auth_token = '{auth_token}' WHERE email = '{email}' ;"
-                    print(updt_query)
                     updt_stmt=ibm_db.exec_immediate(conn,updt_query)
                     pass_chk['AUTH_TOKEN']=auth_token
                     res = jsonify(pass_chk)

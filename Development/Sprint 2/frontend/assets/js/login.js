@@ -33,7 +33,8 @@ $("#login-button").click(function (event) {
             $("#form-login").fadeOut(500);
             $(".wrapper").addClass("form-success");
             setTimeout(() => {
-              window.location.pathname = "/home.html";
+              window.location.pathname =
+                "/Development/Sprint%202/frontend/index.html";
             }, 5000);
           } else {
             document.getElementById("verify").classList.remove("d-none");
@@ -82,9 +83,7 @@ $("#signup-button").click(function (event) {
             localStorage.setItem("auth_token", response);
             $("#form-signup").fadeOut(500);
             $(".wrapper").addClass("form-success");
-            setTimeout(() => {
-              window.location.pathname = "/home.html";
-            }, 5000);
+            alert("Kindly wait for the admin to verify your account");
           } else {
             document.getElementById("sign-unav").classList.remove("d-none");
             document.getElementById("signup-button").innerHTML = "SIGNUP";
