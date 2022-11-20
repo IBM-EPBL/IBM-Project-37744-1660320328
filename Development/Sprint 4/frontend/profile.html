@@ -2,36 +2,31 @@
 <html lang="en">
 
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" />
 
-  <title>Cyborg - Awesome HTML5 Template</title>
+  <title>Plasma Donor Application</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
   <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/owl.css">
-  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="assets/css/fontawesome.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/owl.css" />
+  <link rel="stylesheet" href="assets/css/animate.css" />
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
   <!--
 
-TemplateMo 579 Cyborg Gaming
 
-https://templatemo.com/tm-579-cyborg-gaming
 
 -->
 </head>
 
 <body>
-
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
@@ -46,6 +41,19 @@ https://templatemo.com/tm-579-cyborg-gaming
   <!-- ***** Preloader End ***** -->
 
   <!-- ***** Header Area Start ***** -->
+  <script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "0335c795-83bb-4371-95c5-106fca523f85", // The ID of this integration.
+      region: "au-syd", // The region your integration is hosted in.
+      serviceInstanceID: "474da4b6-d450-4f6b-a9b9-f7e61a828ef2", // The ID of your service instance.
+      onLoad: function (instance) { instance.render(); }
+    };
+    setTimeout(function () {
+      const t = document.createElement('script');
+      t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
+  </script>
   <header class="header-area header-sticky">
     <div class="container">
       <div class="row">
@@ -53,7 +61,7 @@ https://templatemo.com/tm-579-cyborg-gaming
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href="index.html" class="logo">
-              <img src="assets/images/logo.png" alt="">
+              <img src="assets/images/logo.png" alt="" />
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
@@ -61,10 +69,11 @@ https://templatemo.com/tm-579-cyborg-gaming
               <li><a href="index.html">Home</a></li>
               <li><a href="donation.html">Donation Drives</a></li>
               <li><a href="requests.html">Requests</a></li>
-              <li><a href="profile.html" class="active">Profile <img src="assets/images/profile.png" alt=""></a>
+              <li>
+                <a href="profile.html" class="active">Profile <img src="assets/images/profile.png" alt="" /></a>
               </li>
             </ul>
-            <a class='menu-trigger'>
+            <a class="menu-trigger">
               <span>Menu</span>
             </a>
             <!-- ***** Menu End ***** -->
@@ -79,35 +88,32 @@ https://templatemo.com/tm-579-cyborg-gaming
     <div class="row">
       <div class="col-lg-12">
         <div class="page-content">
-
           <!-- ***** Banner Start ***** -->
           <div class="row">
             <div class="col-lg-12">
-              <div class="main-profile ">
+              <div class="main-profile">
                 <div class="row">
                   <div class="col-lg-4">
-                    <img src="assets/images/profile.png" alt="" style="border-radius: 23px;">
+                    <img src="assets/images/profile.png" alt="" style="border-radius: 23px" />
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <div class="main-info header-text">
-                      <span>User</span>
+                      <span id="name-prof"></span>
                       <h4 id="name"></h4>
                       <p>Donate Blood to Save Lives</p>
-
                     </div>
                   </div>
                   <div class="col-lg-4 align-self-center">
                     <ul>
                       <li>Donation Requests <span>3</span></li>
                       <li>Plasma Donated <span>16</span></li>
-                      <li>Plasma Type<span>O+ve</span></li>
+                      <li>Plasma Type<span id="type"></span></li>
                     </ul>
                   </div>
                 </div>
-
               </div>
             </div>
-            <div class="donations-library mt-4 d-none">
+            <div class="donations-library mt-4 d-none" id="user-verify">
               <div class="col-lg-12">
                 <div class="heading-section">
                   <h4><em> Verify</em> Users</h4>
@@ -128,8 +134,6 @@ https://templatemo.com/tm-579-cyborg-gaming
             </div>
           </div>
           <!-- ***** Banner End ***** -->
-
-
         </div>
       </div>
     </div>
@@ -139,15 +143,11 @@ https://templatemo.com/tm-579-cyborg-gaming
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2022 PDAS | All rights reserved.
-
-
-          </p>
+          <p>Copyright © 2022 PDAS | All rights reserved.</p>
         </div>
       </div>
     </div>
   </footer>
-
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
@@ -159,8 +159,7 @@ https://templatemo.com/tm-579-cyborg-gaming
   <script src="assets/js/tabs.js"></script>
   <script src="assets/js/popup.js"></script>
   <script src="assets/js/custom.js"></script>
-
-
+  <script src="assets/js/profile.js  "></script>
 </body>
 
 </html>
