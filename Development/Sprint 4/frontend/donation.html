@@ -88,7 +88,59 @@
                     <h4 class="d-none" id="user-head">
                         Hi, <span id="user-name"></span>
                     </h4>
-
+                    <div class="donations-library d-none" id="drive-upload">
+                        <div class="col-lg-12">
+                            <div class="heading-section">
+                                <h4><em> Create</em> Donation Drive</h4>
+                            </div>
+                            <div>
+                                <form class="form" id="form-post">
+                                    <div class="mb-3 row">
+                                        <div class="col-6">
+                                            <label for="name" class="form-label">Donation Drive Name</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Name"
+                                                required />
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="number" class="form-label">Phone Number</label>
+                                            <input type="number" class="form-control" id="number"
+                                                placeholder="Phone Number" required />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-6">
+                                            <label for="date" class="form-label">Date</label>
+                                            <input type="text" class="form-control" id="date" placeholder="date"
+                                                required />
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="venue" class="form-label">Venue</label>
+                                            <input type="text" class="form-control" id="venue" placeholder="Venue"
+                                                required />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="col-12">
+                                            <label for="gmaps" class="form-label">Gmaps Link</label>
+                                            <input type="text" class="form-control" id="gmaps" placeholder="Gmaps Link"
+                                                required />
+                                        </div>
+                                    </div>
+                                    <div class="text-danger pb-2 d-none" id="post-fail">
+                                        Server Error or Request Not updated
+                                    </div>
+                                    <div class="text-success pb-2 d-none" id="post-success">
+                                        Request Updated
+                                    </div>
+                                    <center>
+                                        <button type="submit" class="btn btn-custom mb-3" id="post-button">
+                                            Submit
+                                        </button>
+                                    </center>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <!-- ***** Their Donations ***** -->
                     <div class="donations-library">
                         <div class="col-lg-12">
@@ -140,6 +192,7 @@
     <script src="assets/js/tabs.js"></script>
     <script src="assets/js/popup.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script src="assets/js/donation.js"></script>
 
 
 </body>
