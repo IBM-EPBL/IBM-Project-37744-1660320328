@@ -2,6 +2,9 @@ from flask import Flask, jsonify, request, render_template
 from datetime import datetime
 from hashlib import sha256
 import random
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 import ibm_db
 
 
@@ -229,7 +232,13 @@ def verify():
             # insert record in database
             updt_query = f"UPDATE YPD18144.user_details SET verified = 1 WHERE email = '{email}' ;"
             if (ibm_db.exec_immediate(conn, updt_query)):
-
+                message = Mail(from_email='hareeshkumaar.23cs@licet.ac.in', to_emails=email,
+                               subject='Your Account is verified! Huraah Login')
+                try:
+                    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+                    response = sg.send(message)
+                except Exception as e:
+                    print(e.message)
                 res = jsonify("success")
                 return res
             else:
