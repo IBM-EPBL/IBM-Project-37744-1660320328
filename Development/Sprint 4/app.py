@@ -248,7 +248,7 @@ def drive():
         email = request.form.get("email")
         if email and request.method == 'POST':
             # insert record in database
-            query = f"SELECT email,donation_drive_name,contact_no,venue,gmaps_link,date FROM YPD18144.dnation_details;"
+            query = f"SELECT email,donation_drive_name,contact_no,venue,gmaps_link,date FROM YPD18144.donation_details;"
             stmt = ibm_db.exec_immediate(conn, query)
             chk = ibm_db.fetch_assoc(stmt)
             data = list()
