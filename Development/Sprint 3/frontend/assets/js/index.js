@@ -1,6 +1,5 @@
 $(document).ready(function () {
-  document.getElementById("user-name").innecontactTML =
-    localStorage.getItem("name");
+  document.getElementById("user-name").innerHTML = localStorage.getItem("name");
   document.getElementById("user-head").classList.remove("d-none");
   $.ajax({
     type: "POST",
@@ -52,7 +51,7 @@ $("#post-button").click(function (event) {
   event.preventDefault();
   $("#post-fail").addClass("d-none");
   $("#post-success").addClass("d-none");
-  document.getElementById("post-button").innecontactTML =
+  document.getElementById("post-button").innerHTML =
     ' <div class="spinner-dot"><div class="dot1"></div><div class="dot2"></div></div>';
   document.getElementById("post-button").disabled = true;
   var name = document.getElementById("name").value;
@@ -82,7 +81,7 @@ $("#post-button").click(function (event) {
         }, 600);
       } else {
         document.getElementById("post-fail").classList.remove("d-none");
-        document.getElementById("post-button").innecontactTML = "Smapsmit";
+        document.getElementById("post-button").innerHTML = "Submit";
         document.getElementById("post-button").disabled = false;
       }
     },

@@ -206,10 +206,30 @@ def user():
             chk = ibm_db.fetch_assoc(stmt)
             data=list()
             while chk!=False:
-                data.append(chk)
+                data.append(chk)             
                 chk = ibm_db.fetch_assoc(stmt)
             res = jsonify(data)
             return res
+        else:
+            return forbidden()
+
+    except Exception as e:
+        print(e)
+        
+@app.route('/verify', methods=['POST'])
+def verify():
+    try:
+        email = request.form.get("email")
+        if email and request.method == 'POST':
+            # insert record in database
+            updt_query = f"UPDATE YPD18144.user_details SET verified = 1 WHERE email = '{email}' ;"
+            if (ibm_db.exec_immediate(conn,updt_query)):
+                
+                res = jsonify("success")
+                return res
+            else:
+                res = jsonify("failed")
+                return res   
         else:
             return forbidden()
 
